@@ -82,16 +82,40 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList C = A;
+        while(A.rest!=null){
+            A = A.rest;
+        }
+        A.rest = B;
+//        不能到最后让A = ……,因为A只是一个引用，它怎么指对列表没影响
+//        而A.rest是列表内的引用，它的指向对列表就有影响了。
+        return C;
     }
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
+    //将两个链表A与B相连，但不能改变A，考验对引用类型的理解
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+//        if(A == null){
+//            return B;
+//        }
+//        IntList C = new IntList(A.first,A.rest);//这样是不行的。
+//        //first是基本类型，C新复制了一份；rest是引用类型，仍然是指向A的rest部分。
+//        //必须逐个拷贝
+        IntList C = new IntList(A.first,null);
+        IntList D = C;
+        IntList tempA = A;
+        while(A.rest!=null){
+            A = A.rest;
+            C.rest = new IntList(A.first,null);
+            C = C.rest;
+        }
+        C.rest = B;
+        A = tempA;
+        return D;
     }
 
 
