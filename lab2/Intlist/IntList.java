@@ -82,6 +82,10 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
+        if(A == null){
+            A = B;
+            return B;
+        }
         IntList C = A;
         while(A.rest!=null){
             A = A.rest;
@@ -99,9 +103,9 @@ public class IntList {
     //将两个链表A与B相连，但不能改变A，考验对引用类型的理解
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-//        if(A == null){
-//            return B;
-//        }
+        if(A == null){
+            return B;
+        }
 //        IntList C = new IntList(A.first,A.rest);//这样是不行的。
 //        //first是基本类型，C新复制了一份；rest是引用类型，仍然是指向A的rest部分。
 //        //必须逐个拷贝
